@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rex — Gallery — FunkyElite</title><link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMwNDA3MGMiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIxNCIgZmlsbD0iI2U4MmQ1OCIvPjwvc3ZnPg==">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Unbounded:wght@300;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/fe.css">
+</head><body>
+<nav class="fe"><a class="brand" href="../index.html"><img src="../assets/logo.svg" alt="FunkyElite" style="height:36px"></a>
+<div class="crumbs"><a href="../index.html#nights">Exhibits</a> &nbsp;/&nbsp; <b>Rex — Gallery</b></div></nav>
+<main>
+<header class="gal-cover"><div class="bg" style="background-image:url('../assets/gallery/rex/hero.jpg')"></div>
+<div class="inner"><div class="kicker">The Photo Archive</div><h1>Rex</h1>
+<div class="stats"><div><b>84</b><span>photographs</span></div><div><b>2002–2004</b><span>era</span></div><div><b>Saturdays</b><span>the night</span></div></div>
+<p class="intro">The page is lost; the photographs survived. Eighty-four frames of Rex on a Saturday, exactly as the camera found it.</p>
+<button class="btn primary" id="enter" style="border:0;cursor:pointer">Enter the gallery</button>
+<div style="margin-top:16px"><a class="btn ghost" href="../clubs/rex.html">← Back to the exhibit</a></div>
+</div></header>
+<section id="room"><div class="wrap">
+<div class="gal-grid"><figure class="reveal"><img src="../assets/gallery/rex/00.jpg" loading="lazy" alt="Rex archive photograph 1"></figure><figure class="reveal"><img src="../assets/gallery/rex/01.jpg" loading="lazy" alt="Rex archive photograph 2"></figure><figure class="reveal"><img src="../assets/gallery/rex/02.jpg" loading="lazy" alt="Rex archive photograph 3"></figure><figure class="reveal"><img src="../assets/gallery/rex/03.jpg" loading="lazy" alt="Rex archive photograph 4"></figure><figure class="reveal"><img src="../assets/gallery/rex/04.jpg" loading="lazy" alt="Rex archive photograph 5"></figure><figure class="reveal"><img src="../assets/gallery/rex/05.jpg" loading="lazy" alt="Rex archive photograph 6"></figure><figure class="reveal"><img src="../assets/gallery/rex/06.jpg" loading="lazy" alt="Rex archive photograph 7"></figure><figure class="reveal"><img src="../assets/gallery/rex/07.jpg" loading="lazy" alt="Rex archive photograph 8"></figure><figure class="reveal"><img src="../assets/gallery/rex/08.jpg" loading="lazy" alt="Rex archive photograph 9"></figure><figure class="reveal"><img src="../assets/gallery/rex/09.jpg" loading="lazy" alt="Rex archive photograph 10"></figure><figure class="reveal"><img src="../assets/gallery/rex/10.jpg" loading="lazy" alt="Rex archive photograph 11"></figure><figure class="reveal"><img src="../assets/gallery/rex/11.jpg" loading="lazy" alt="Rex archive photograph 12"></figure><figure class="reveal"><img src="../assets/gallery/rex/12.jpg" loading="lazy" alt="Rex archive photograph 13"></figure><figure class="reveal"><img src="../assets/gallery/rex/13.jpg" loading="lazy" alt="Rex archive photograph 14"></figure><figure class="reveal"><img src="../assets/gallery/rex/14.jpg" loading="lazy" alt="Rex archive photograph 15"></figure><figure class="reveal"><img src="../assets/gallery/rex/15.jpg" loading="lazy" alt="Rex archive photograph 16"></figure><figure class="reveal"><img src="../assets/gallery/rex/16.jpg" loading="lazy" alt="Rex archive photograph 17"></figure><figure class="reveal"><img src="../assets/gallery/rex/17.jpg" loading="lazy" alt="Rex archive photograph 18"></figure><figure class="reveal"><img src="../assets/gallery/rex/18.jpg" loading="lazy" alt="Rex archive photograph 19"></figure><figure class="reveal"><img src="../assets/gallery/rex/19.jpg" loading="lazy" alt="Rex archive photograph 20"></figure><figure class="reveal"><img src="../assets/gallery/rex/20.jpg" loading="lazy" alt="Rex archive photograph 21"></figure><figure class="reveal"><img src="../assets/gallery/rex/21.jpg" loading="lazy" alt="Rex archive photograph 22"></figure><figure class="reveal"><img src="../assets/gallery/rex/22.jpg" loading="lazy" alt="Rex archive photograph 23"></figure><figure class="reveal"><img src="../assets/gallery/rex/23.jpg" loading="lazy" alt="Rex archive photograph 24"></figure></div>
+<p class="gal-note">A curated selection of 24 frames — all 84 photographs live on in the FunkyElite archive.</p>
+</div></section>
+<div id="lb"><span class="x">✕</span><span class="arr prev">‹</span><div class="frame"><img alt=""></div><span class="arr next">›</span></div>
+<script>
+const room=document.getElementById('room');
+document.getElementById('enter').addEventListener('click',()=>{room.classList.add('open');setTimeout(()=>room.scrollIntoView({behavior:'smooth'}),60)});
+const srcs=[...document.querySelectorAll('.gal-grid img')].map(i=>i.src);let cur=0;
+const lb=document.getElementById('lb'),lbi=lb.querySelector('.frame img');
+function show(i){cur=(i+srcs.length)%srcs.length;lbi.src=srcs[cur];lb.classList.add('open')}
+document.querySelectorAll('.gal-grid figure').forEach((f,i)=>f.addEventListener('click',()=>show(i)));
+lb.querySelector('.x').onclick=e=>{e.stopPropagation();lb.classList.remove('open')};
+lb.querySelector('.prev').onclick=e=>{e.stopPropagation();show(cur-1)};
+lb.querySelector('.next').onclick=e=>{e.stopPropagation();show(cur+1)};
+lb.onclick=e=>{if(e.target===lb||e.target===lbi)lb.classList.remove('open')};
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')lb.classList.remove('open');if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)});
+</script></main><footer class="fe"><div class="wrap"><img src="../assets/logo.svg" alt="FunkyElite" style="height:22px;width:auto;vertical-align:middle;margin-right:12px"><span>A museum of London nights, 1997–2014.</span><a href="../index.html">funkyelite.com</a></div></footer><script>
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script></body></html>
