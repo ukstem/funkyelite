@@ -561,6 +561,19 @@ m715 -136 c238 -37 507 -122 660 -209 95 -53 152 -90 200 -130 30 -24 78 -62
 #fe-draw .fe-dot{animation:none;transform:none}
 #fe-draw .fe-tipdot,#fe-draw .fe-shimmer{animation:none;opacity:0;display:none}
 }
+/* Mobile: the pen-draw stack is fragile on iOS Safari (masked stroke-dashoffset + filter combinations don't reliably rasterize per frame). Skip it — reveal the full logo with a clean fade-in instead. */
+@media(max-width:640px){
+  #fe-draw .fe-pen,#fe-draw .fe-trail{display:none}
+  #fe-draw .fe-clean,#fe-draw .fe-final{animation:none;opacity:1}
+  #fe-draw .fe-div{animation:none;stroke-dashoffset:0}
+  #fe-draw .fe-elite{animation:none;transform:none}
+  #fe-draw .fe-dot{animation:none;transform:none}
+  #fe-draw .fe-tipdot{display:none}
+  #fe-draw .fe-shimmer{animation:feSheenMob 1.4s ease-out .6s forwards}
+  #fe-draw{animation:feReveal .9s cubic-bezier(.2,.7,.2,1) both}
+}
+@keyframes feReveal{from{opacity:0;transform:scale(.94) translateY(6px)}to{opacity:1;transform:none}}
+@keyframes feSheenMob{to{transform:translateX(6500px)}}
 </style>
 </svg></h1>
     <div class="tagline">
